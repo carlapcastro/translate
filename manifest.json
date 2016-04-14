@@ -1,0 +1,36 @@
+{
+  "name": "Translate",
+  "description": "A browser action with a popup that translates phrases and web pages",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*", "activeTab"
+  ],
+  "background": {
+    "persistent": false,
+    "scripts": ["popup.js"]
+  },
+
+
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": [
+      "js/jquery-2.1.4.min.js",
+      "semantic/semantic.js"
+    ],
+    "css": [
+      "semantic/semantic.min.css"
+    ]
+  }],
+
+  "browser_action": {
+    "default_title": "Test Extension",
+    "default_icon": "t-icon.png",
+    "default_popup": ""
+  },
+
+  "web_accessible_resources" : [
+    "semantic/*.js",
+    "js/jquery-2.1.4.min.js"
+  ]
+}
