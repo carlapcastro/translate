@@ -15,11 +15,10 @@
   "content_scripts": [{
     "matches": ["*://*/*"],
     "js": [
-      "js/jquery-2.1.4.min.js",
-      "semantic/semantic.js"
+      "js/jquery-2.1.4.min.js"      
     ],
     "css": [
-      "semantic/semantic.min.css"
+
     ]
   }],
 
@@ -30,7 +29,8 @@
   },
 
   "web_accessible_resources" : [
-    "semantic/*.js",
+    "css/bootstrap.min.css",
+    "js/bootstrap.min.js",
     "js/jquery-2.1.4.min.js"
   ]
 }

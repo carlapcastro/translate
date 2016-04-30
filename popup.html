@@ -1,51 +1,28 @@
-<!-- <!doctype html>
-<html>
-  <head>
-      <title>Getting Started Extension's Popup</title>
-      <style>
-        body {
-          font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-          font-size: 100%;
-        }
-        #status {
-          /* avoid an excessively wide status text */
-          white-space: pre;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          max-width: 400px;
-        }
-      </style>
-    <script src="popup2.js"></script>
-
-  </head>
-  <body>
-      <div id="status"></div>
-      <img id="image-result" hidden>
-  </body>
-</html> -->
 <!doctype html>
 <html>
   <head>
+      <link rel="stylesheet" href="./css/bootstrap.min.css"></link>
+      <script src="./js/jquery-2.1.4.min.js"></script>
+      <script src="./js/bootstrap.min.js"></script>
+
       <title>Getting Started Extension's Popup</title>
-      <style>
-        body {
-          font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-          font-size: 100%;
-        }
-        #status {
-          /* avoid an excessively wide status text */
-          white-space: pre;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          max-width: 400px;
-        }
-      </style>
 
   </head>
   <body>
-      <div id="status"></div>
-      <div class="ui blue button" id="__blueme__">Blue</div>
-      <p>HELLO WORLD</p>
-      <img id="image-result" hidden>
+      <div class = "container" style = "margin-top:20px;min-height: 250px;width:500px;">
+          <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Dropdown
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+          </div>
+      </div>
   </body>
 </html>
