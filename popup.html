@@ -13,41 +13,55 @@
       <div class = "container big">
 
           <div class = "row">
-              <div class = "col-md-2 col-md-offset-2">From:</div>
-              <div class="col-md-3">
-                  <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                      </ul>
-                  </div>
+              <div class = "col-xs-2 text-center text-blue">
+                  <div class="text-container">From:</div>
               </div>
-              <div class="col-md-2">To:</div>
-              <div class="col-md-3">
-                  <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Dropdown
-                        <span class="caret"></span>
+              <div class="col-xs-3">
+                  <div class = "btn-group text-gray">
+                      <button class="btn btn-secondary btn-sm text-gray dropdown-toggle" id="fromDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          dropdown
+                          <span class="caret"></span>
                       </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                      </ul>
+                      <div class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="col-xs-2 text-center text-blue">
+                  <div class="text-container">To:</div>
+              </div>
+              <div class="col-xs-3">
+                  <div class = "btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" id="toDropdowntype=" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          dropdown
+                          <span class="caret"></span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </div>
                   </div>
               </div>
           </div>
-
-
+          <div class = "container label-container">
+              <div><label class="text-blue" for="comment">Enter Text:</label></div>
+              <form method="post" action="">
+                  <textarea class="form-control" rows="5" id="inputText"></textarea>
+                  <button type="submit" class="s-button btn btn-sm">Submit</button>
+              </form>
+          </div>
+          <div class="container label-container">
+              <div class="text-blue">Or...</div>
+          </div>
+          <div class="container label-container" align="center">
+              <button class="btn btn-default page-button">Translate Web Page</button>
+          </div>
       </div>
+
+
   </body>
 </html>
