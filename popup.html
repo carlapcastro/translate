@@ -1,9 +1,67 @@
 <!doctype html>
 <html>
   <head>
-    <title>Set Page Color Popup</title>
-    <script src="popup.js"></script>
+      <link rel="stylesheet" href="./css/bootstrap.min.css"></link>
+      <link rel="stylesheet" href="./css/popup.css"></link>
+      <script src="./js/jquery-2.1.4.min.js"></script>
+      <script src="./js/bootstrap.min.js"></script>
+
+      <title>Getting Started Extension's Popup</title>
+
   </head>
   <body>
+      <div class = "container big">
+
+          <div class = "row">
+              <div class = "col-xs-2 text-center text-blue">
+                  <div class="text-container">From:</div>
+              </div>
+              <div class="col-xs-3">
+                  <div class = "btn-group text-gray">
+                      <button class="btn btn-secondary btn-sm text-gray dropdown-toggle" id="fromDropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          dropdown
+                          <span class="caret"></span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </div>
+                  </div>
+
+              </div>
+              <div class="col-xs-2 text-center text-blue">
+                  <div class="text-container">To:</div>
+              </div>
+              <div class="col-xs-3">
+                  <div class = "btn-group">
+                      <button class="btn btn-secondary btn-sm dropdown-toggle" id="toDropdowntype=" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          dropdown
+                          <span class="caret"></span>
+                      </button>
+                      <div class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Action</a></li>
+                          <li><a class="dropdown-item" href="#">Another action</a></li>
+                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class = "container label-container">
+              <div><label class="text-blue" for="comment">Enter Text:</label></div>
+              <form method="post" action="">
+                  <textarea class="form-control" rows="5" id="inputText"></textarea>
+                  <button type="submit" class="s-button btn btn-sm">Submit</button>
+              </form>
+          </div>
+          <div class="container label-container">
+              <div class="text-blue">Or...</div>
+          </div>
+          <div class="container label-container" align="center">
+              <button class="btn btn-default page-button">Translate Web Page</button>
+          </div>
+      </div>
+
+
   </body>
 </html>
