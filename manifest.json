@@ -15,7 +15,9 @@
   "content_scripts": [{
     "matches": ["*://*/*"],
     "js": [
-      "js/jquery-2.1.4.min.js"      
+      "js/jquery-2.1.4.min.js",
+      "js/translate.js",
+      "js/translate_server.js"
     ],
     "css": [
 

@@ -3,12 +3,30 @@ var translate = {
 
   params: {
     'q': 'der Obama kommt nach Oslo.',
-    'target': 'en',
-    'source': 'de', // keys.google_search.cx
+    'target_lang': 'en',
+    'source_lang': 'de', // keys.google_search.cx
     'key': 'x'
-  },
+  }
+}
 
-  url:''
+/**
+ * Sends GET request to API.
+ * @param {object} window - browser's open window, used to check type of browser
+ * @param {string} url - uri to send GET request to
+ * @param {function} callback - callback method
+ */
+function translateWrapper(window, source_text, source_lang, target_lang, callback){
+  translate.params['q'] = source_text;
+  translate.params['source_lang'] = source_lang;
+  translate.params['target_lang'] = target_lang;
+
+  var url = appendQueryParameters(translate.search_url, translate.params);
+
+  httpGetAsync(window, url, function(i) {
+    translateResponse(i, function(res) {
+      console.log('GET request successful: Translated', res);
+    })
+  });
 }
 
 /**
@@ -19,7 +37,6 @@ var translate = {
  */
 function httpGetAsync(window, url, callback){
 
-  // TODO: CHECK FOR WHEN I RUN OUT OF API CALLS, OR IF THE REQUEST IS NULL T-T
     var xmlHttp;
     if (window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -58,7 +75,7 @@ function appendQueryParameters(url, parameters) {
 
 // Callback method to handle GET response.
 // Convert image link array -> array of images
-function translateReponse(response, callback) {
+function translateResponse(response, callback) {
   if (response == undefined) {
     // Handle response when nothing is returned.
     var err = new Error("Error retrieving response.");

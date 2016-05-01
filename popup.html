@@ -7,7 +7,6 @@
       <script src="./js/bootstrap.min.js"></script>
 
       <title>Getting Started Extension's Popup</title>
-
   </head>
   <body>
       <div class = "container big">
@@ -22,10 +21,10 @@
                           dropdown
                           <span class="caret"></span>
                       </button>
-                      <div class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <div class="dropdown-menu" id="sourceLanguageMenu">
+                        <li><a class="dropdown-item" href="#" value="en">English</a></li>
+                        <li><a class="dropdown-item" href="#" value="fr">French</a></li>
+                        <li><a class="dropdown-item" href="#" value="de">German</a></li>
                       </div>
                   </div>
 
@@ -39,10 +38,10 @@
                           dropdown
                           <span class="caret"></span>
                       </button>
-                      <div class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <div class="dropdown-menu" id="targetLanguageMenu">
+                        <li><a class="dropdown-item" href="#" value="en">English</a></li>
+                        <li><a class="dropdown-item" href="#" value="fr">French</a></li>
+                        <li><a class="dropdown-item" href="#" value="de">German</a></li>
                       </div>
                   </div>
               </div>
@@ -51,8 +50,11 @@
               <div><label class="text-blue" for="comment">Enter Text:</label></div>
               <form method="post" action="">
                   <textarea class="form-control" rows="5" id="inputText"></textarea>
-                  <button type="submit" class="s-button btn btn-sm">Submit</button>
+                  <button type="submit" class="s-button btn btn-sm" id="submitBtn">Submit</button>
               </form>
+          </div>
+          <div class = "container label-container">
+              <span id="translatedOutput">Your translated text will appear here!</span>
           </div>
           <div class="container label-container">
               <div class="text-blue">Or...</div>
@@ -61,7 +63,7 @@
               <button class="btn btn-default page-button">Translate Web Page</button>
           </div>
       </div>
-
-
+      <script src="./js/translate_server.js"></script>
+      <script src="./js/translate.js"></script>
   </body>
 </html>
