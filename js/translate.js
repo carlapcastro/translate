@@ -13,4 +13,16 @@ $(document).ready(function(){
     // translateWrapper(window, sourceLanguage, )
   }
 
+  $('#sourceLanguageMenu li  a').on('click', function(){
+    $('#fromText').text($(this).text());
+  });
+
+  $('#targetLanguageMenu li  a').on('click', function(){
+    $('#toText').text($(this).text());
+  });
+
+
+
+
+
 });

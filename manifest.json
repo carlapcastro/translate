@@ -8,7 +8,7 @@
   ],
   "background": {
     "persistent": false,
-    "scripts": ["popup.js"]
+    "scripts": ["js/translate.js","js/translate_server.js"]
   },
 
 
