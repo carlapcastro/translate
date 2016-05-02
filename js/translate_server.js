@@ -25,6 +25,7 @@ function translateWrapper(window, source_text, source_lang, target_lang, callbac
   httpGetAsync(window, url, function(i) {
     translateResponse(i, function(res) {
       console.log('GET request successful: Translated', res);
+      callback(res);
     })
   });
 }
@@ -93,5 +94,18 @@ function translateResponse(response, callback) {
       console.log('Retrieved translated text:', translated_text);
       callback(translated_text);
     }
+  }
+}
+
+// Callback method to handle GET response.
+// Convert image link array -> array of images
+function testTranslateResponse(response, callback) {
+  if (response == undefined) {
+    // Handle response when nothing is returned.
+    var err = new Error("Error retrieving response.");
+    callback(err);
+  } else {
+    translated_text = 'TRANSLATED VERSION OF ' + response;
+    callback(translated_text);
   }
 }
