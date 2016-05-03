@@ -1,6 +1,7 @@
 var translate = {
   search_url:"http://127.0.0.1:8081/translate?",
   yandex_search_url:"https://translate.yandex.net/api/v1.5/tr.json/translate?",
+  detect_url:"https://translate.yandex.net/api/v1.5/tr.json/detect?",
 
   // params: {
   //   'q': 'der Obama kommt nach Oslo.',
@@ -16,6 +17,13 @@ var translate = {
     'text': 'der Obama kommt nach Oslo.',
     'lang': 'en-ru',
   }
+}
+
+function detectLanguage(phrase) {
+    var url = translate.detect_url + "key=" + translate.params["key"] + "&text=" + phrase
+    $.post(url, function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+    });
 }
 
 

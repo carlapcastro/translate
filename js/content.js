@@ -9,26 +9,25 @@ chrome.runtime.onMessage.addListener(
     }
 });
 
+chrome.runtime.sendMessage({greeting: "detection"}, function(response) {
+  console.log(response.farewell);
+});
+
 
 function translateWebPage(sourceLanguage, targetLanguage) {
     var elements = document.getElementsByTagName('*');
 
     for (var i = 0; i < elements.length; i++) {
-        (function(){
             var element = elements[i];
 
             for (var j = 0; j < element.childNodes.length; j++) {
                 (function() {
                     var node = element.childNodes[j];
                     if(node.nodeType === 3){
-                        $.when(swapText(element,node, sourceLanguage, targetLanguage)).then(function () {
-                            //console.log("j= "+j);
-                        })
+                        $.when(swapText(element,node, sourceLanguage, targetLanguage))
                     }
                 })(j);
             }
-        })(i)
-
     }
 
 }
