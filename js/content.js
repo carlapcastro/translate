@@ -1,10 +1,3 @@
-// chrome.runtime.onMessage.addListener(
-//     function(request, sender, sendResponse) {
-//         if (request.greeting == "hello")
-//             alert("received");
-//             // sendResponse({farewell: "goodbye"});
-// });
-
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log(sender.tab ?
@@ -14,7 +7,7 @@ chrome.runtime.onMessage.addListener(
         translateWebPage(request.source, request.target)
         sendResponse({farewell: "goodbye"});
     }
-  });
+});
 
 
 function translateWebPage(sourceLanguage, targetLanguage) {
