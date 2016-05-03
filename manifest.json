@@ -8,7 +8,7 @@
   ],
   "background": {
     "persistent": false,
-    "scripts": ["js/translate.js","js/translate_server.js"]
+    "scripts": ["js/content.js"]
   },
 
 
@@ -16,12 +16,10 @@
     "matches": ["*://*/*"],
     "js": [
       "js/jquery-2.1.4.min.js",
-      "js/translate.js",
-      "js/translate_server.js"
+      "js/translate_server.js",
+      "js/content.js"
     ],
-    "css": [
-
-    ]
+    "run_at": "document_end"
   }],
 
   "browser_action": {
