@@ -14,8 +14,10 @@ chrome.runtime.onMessage.addListener(
 });
 
 function sendDetectionMessage() {
+    var str = document.body.innerText
+    var part = str.split(/\s+/).slice(20, 40).join('+');
 
-    chrome.runtime.sendMessage({greeting: "detectLanguage"}, function(response) {
+    chrome.runtime.sendMessage({greeting: "detectLanguage", str: part}, function(response) {
       console.log(response.farewell);
     });
 

@@ -30,6 +30,7 @@ function detectLanguage(phrase) {
     $.post(url, function(data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
         $('#fromText').text(languages[data.lang]);
+        $('#fromText').attr('value', languages[data.lang]);
     });
 
 }

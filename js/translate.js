@@ -58,7 +58,7 @@ $(document).ready(function(){
                 "from a content script:" + sender.tab.url :
                 "from the extension");
     if (request.greeting == "detectLanguage") {
-      var language = detectLanguage(request.greeting);
+      detectLanguage(request.str);
       sendResponse({farewell: "good-a-bye"});
     }
   });
