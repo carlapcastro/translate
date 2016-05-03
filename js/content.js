@@ -6,12 +6,20 @@ chrome.runtime.onMessage.addListener(
     if (request.greeting == "hello") {
         translateWebPage(request.source, request.target)
         sendResponse({farewell: "goodbye"});
+    } else if (request.greeting == "detection") {
+        sendDetectionMessage();
+        sendResponse({farewell: "detection started"});
     }
+
 });
 
-chrome.runtime.sendMessage({greeting: "detection"}, function(response) {
-  console.log(response.farewell);
-});
+function sendDetectionMessage() {
+
+    chrome.runtime.sendMessage({greeting: "detectLanguage"}, function(response) {
+      console.log(response.farewell);
+    });
+
+}
 
 
 function translateWebPage(sourceLanguage, targetLanguage) {

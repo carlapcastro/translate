@@ -19,11 +19,19 @@ var translate = {
   }
 }
 
+var languages = {
+    "en" : "English",
+    "es" : "Spanish",
+    "fr" : "French"
+}
+
 function detectLanguage(phrase) {
     var url = translate.detect_url + "key=" + translate.params["key"] + "&text=" + phrase
-    $.post(url, function(data, status){
-        console.log("Data: " + data + "\nStatus: " + status);
+    $.post(url, function(data, status) {
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+        $('#fromText').text(languages[data.lang]);
     });
+
 }
 
 
