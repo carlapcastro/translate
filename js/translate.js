@@ -7,8 +7,8 @@ $(document).ready(function(){
   $('#submitBtn').on("click", function() {
     console.log('submit button pressed');
     // var sourceText = $('');
-    var sourceLanguage = $('#fromText').text();
-    var targetLanguage = $('#toText').text();
+    var sourceLanguage = $('#fromText').attr('value');
+    var targetLanguage = $('#toText').attr('value');
     var sourceText = $('#inputText').val();
     console.log('Source Language Selected:', sourceLanguage);
     console.log('Target Language Selected:', targetLanguage);
@@ -17,8 +17,8 @@ $(document).ready(function(){
       console.log('No languages selected');
       $('#translatedOutput').text('Please select a language!');
     } else {
-      // Change this once the moses server works
-      testTranslateResponse(sourceText, function(i) {
+      // TODO: Change this once the moses server works
+      translateWrapper(window, sourceText, sourceLanguage, targetLanguage, function(i) {
         $('#translatedOutput').text(i);
       });
     }
@@ -26,10 +26,12 @@ $(document).ready(function(){
 
   $('#sourceLanguageMenu li  a').on('click', function(){
     $('#fromText').text($(this).text());
+    $('#fromText').attr('value', $(this).attr('value'));
   });
 
   $('#targetLanguageMenu li  a').on('click', function(){
     $('#toText').text($(this).text());
+    $('#toText').attr('value', $(this).attr('value'));
   });
 
 });

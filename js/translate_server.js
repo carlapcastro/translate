@@ -1,13 +1,34 @@
 var translate = {
   search_url:"http://127.0.0.1:8081/translate?",
+  yandex_search_url:"https://translate.yandex.net/api/v1.5/tr.json/translate?",
 
+  // params: {
+  //   'q': 'der Obama kommt nach Oslo.',
+  //   'target_lang': 'en',
+  //   'source_lang': 'de',
+  //   'key': 'x',
+  //   'yandex_key':'trnsl.1.1.20160502T220832Z.0698c1fc39ddc419.c583acaca7d253004aa08b2a30d750c3b1aa74ae'
+  // }
+
+  // Yandex API params
   params: {
-    'q': 'der Obama kommt nach Oslo.',
-    'target_lang': 'en',
-    'source_lang': 'de', // keys.google_search.cx
-    'key': 'x'
+    'key':'trnsl.1.1.20160502T220832Z.0698c1fc39ddc419.c583acaca7d253004aa08b2a30d750c3b1aa74ae',
+    'text': 'der Obama kommt nach Oslo.',
+    'lang': 'en-ru',
   }
 }
+
+
+/**
+  Yandex API
+  https://translate.yandex.net/api/v1.5/tr.json/translate ?
+  key=<API key>
+  & text=<text to translate>
+  & lang=<translation direction>
+  & [format=<text format>]
+  & [options=<translation options>]
+  & [callback=<name of the callback function>]
+*/
 
 /**
  * Sends GET request to API.
@@ -16,14 +37,25 @@ var translate = {
  * @param {function} callback - callback method
  */
 function translateWrapper(window, source_text, source_lang, target_lang, callback){
-  translate.params['q'] = source_text;
-  translate.params['source_lang'] = source_lang;
-  translate.params['target_lang'] = target_lang;
+  // MOSES
+  // translate.params['q'] = source_text;
+  // translate.params['source_lang'] = source_lang;
+  // translate.params['target_lang'] = target_lang;
 
-  var url = appendQueryParameters(translate.search_url, translate.params);
+  // YANDEX
+  translate.params['text'] = source_text;
+  translate.params['lang'] = source_lang + '-' + target_lang;
+
+  var url = appendQueryParameters(translate.yandex_search_url, translate.params);
+  console.log(url);
 
   httpGetAsync(window, url, function(i) {
-    translateResponse(i, function(res) {
+    // translateResponse(i, function(res) {
+    //   console.log('GET request successful: Translated', res);
+    //   callback(res);
+    // })
+
+    testTranslateResponse(i, function(res) {
       console.log('GET request successful: Translated', res);
       callback(res);
     })
@@ -105,7 +137,14 @@ function testTranslateResponse(response, callback) {
     var err = new Error("Error retrieving response.");
     callback(err);
   } else {
-    translated_text = 'TRANSLATED VERSION OF ' + response;
-    callback(translated_text);
+    var json_response = JSON.parse(response);
+    if (json_response.error) {
+      var err = new Error('API error', json_response.error.errors[0].message);
+      callback(err);
+    } else {
+      var translated_text = json_response.text[0];
+      console.log('Retrieved translated text:', translated_text);
+      callback(translated_text);
+    }
   }
 }
