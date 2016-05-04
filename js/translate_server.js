@@ -1,18 +1,18 @@
 var translate = {
-  search_url:"http://127.0.0.1:8081/translate?",
+  moses_search_url:"http://127.0.0.1:8081/translate?",
   yandex_search_url:"https://translate.yandex.net/api/v1.5/tr.json/translate?",
   detect_url:"https://translate.yandex.net/api/v1.5/tr.json/detect?",
 
-  // params: {
-  //   'q': 'der Obama kommt nach Oslo.',
-  //   'target_lang': 'en',
-  //   'source_lang': 'de',
-  //   'key': 'x',
-  //   'yandex_key':'trnsl.1.1.20160502T220832Z.0698c1fc39ddc419.c583acaca7d253004aa08b2a30d750c3b1aa74ae'
-  // }
+  // Moses API params
+  moses_params: {
+    'q': 'der Obama kommt nach Oslo.',
+    'target': 'en',
+    'source': 'de',
+    'key': 'x',
+  },
 
   // Yandex API params
-  params: {
+  yandex_params: {
     'key':'trnsl.1.1.20160502T220832Z.0698c1fc39ddc419.c583acaca7d253004aa08b2a30d750c3b1aa74ae',
     'text': 'der Obama kommt nach Oslo.',
     'lang': 'en-ru',
@@ -26,13 +26,13 @@ var languages = {
 }
 
 function detectLanguage(phrase) {
-    var url = translate.detect_url + "key=" + translate.params["key"] + "&text=" + phrase
+  // Formatted for Yandex
+    var url = translate.detect_url + "key=" + translate.yandex_params["key"] + "&text=" + phrase
     $.post(url, function(data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
         $('#fromText').text(languages[data.lang]);
         $('#fromText').attr('value', languages[data.lang]);
     });
-
 }
 
 
@@ -53,26 +53,28 @@ function detectLanguage(phrase) {
  * @param {string} url - uri to send GET request to
  * @param {function} callback - callback method
  */
-function translateWrapper(window, source_text, source_lang, target_lang, callback){
-  // MOSES
-  // translate.params['q'] = source_text;
-  // translate.params['source_lang'] = source_lang;
-  // translate.params['target_lang'] = target_lang;
+function translateWrapper(window, mt, source_text, source_lang, target_lang, callback){
+  var url = '';
+  if (mt == 'yandex') {
+    // YANDEX
+    console.log('Using Yandex API...');
+    translate.yandex_params['text'] = source_text;
+    translate.yandex_params['lang'] = source_lang + '-' + target_lang;
 
-  // YANDEX
-  translate.params['text'] = source_text;
-  translate.params['lang'] = source_lang + '-' + target_lang;
-
-  var url = appendQueryParameters(translate.yandex_search_url, translate.params);
-  console.log(url);
+    url = appendQueryParameters(translate.yandex_search_url, translate.yandex_params);
+    console.log('Querying URL:', url);
+  } else {
+    // MOSES
+    console.log('Using Moses API...');
+    translate.moses_params['q'] = source_text;
+    translate.moses_params['source'] = source_lang;
+    translate.moses_params['target'] = target_lang;
+    url = appendQueryParameters(translate.moses_search_url, translate.moses_params);
+    console.log('Querying URL:', url);
+  }
 
   httpGetAsync(window, url, function(i) {
-    // translateResponse(i, function(res) {
-    //   console.log('GET request successful: Translated', res);
-    //   callback(res);
-    // })
-
-    testTranslateResponse(i, function(res) {
+    translateResponse(mt, i, function(res) {
       console.log('GET request successful: Translated', res);
       callback(res);
     })
@@ -123,9 +125,9 @@ function appendQueryParameters(url, parameters) {
   return url;
 }
 
-// Callback method to handle GET response.
-// Convert image link array -> array of images
-function translateResponse(response, callback) {
+
+// Callback method to handle GET response from MT API.
+function translateResponse(mt, response, callback) {
   if (response == undefined) {
     // Handle response when nothing is returned.
     var err = new Error("Error retrieving response.");
@@ -136,32 +138,18 @@ function translateResponse(response, callback) {
       var err = new Error('API error', json_response.error.errors[0].message);
       callback(err);
     } else {
-      var results = json_response.data;
-      var translations = results.translations;
-      var translated_text = translations.translatedText;
+      if (mt == 'yandex') {
+        var translated_text = json_response.text[0];
+        console.log('Retrieved translated text from Yandex:', translated_text);
+        callback(translated_text);
+      } else {
+        var results = json_response.data;
+        var translations = results.translations;
+        var translated_text = translations[0].translatedText;
 
-      console.log('Retrieved translated text:', translated_text);
-      callback(translated_text);
-    }
-  }
-}
-
-// Callback method to handle GET response.
-// Convert image link array -> array of images
-function testTranslateResponse(response, callback) {
-  if (response == undefined) {
-    // Handle response when nothing is returned.
-    var err = new Error("Error retrieving response.");
-    callback(err);
-  } else {
-    var json_response = JSON.parse(response);
-    if (json_response.error) {
-      var err = new Error('API error', json_response.error.errors[0].message);
-      callback(err);
-    } else {
-      var translated_text = json_response.text[0];
-      console.log('Retrieved translated text:', translated_text);
-      callback(translated_text);
+        console.log('Retrieved translated text from Moses:', translated_text);
+        callback(translated_text);
+      }
     }
   }
 }

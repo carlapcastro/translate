@@ -10,15 +10,18 @@ $(document).ready(function(){
     var sourceLanguage = $('#fromText').attr('value');
     var targetLanguage = $('#toText').attr('value');
     var sourceText = $('#inputText').val();
+    var translationModel = $('#translationModel').attr('value');
+    console.log($('#translationModel'));
     console.log('Source Language Selected:', sourceLanguage);
     console.log('Target Language Selected:', targetLanguage);
     console.log('Text to translate:', sourceText);
+    console.log('Using API:', translationModel);
     if (sourceLanguage == 'Language' || targetLanguage == 'Language') {
       console.log('No languages selected');
       $('#translatedOutput').text('Please select a language!');
     } else {
       // TODO: Change this once the moses server works
-      translateWrapper(window, sourceText, sourceLanguage, targetLanguage, function(i) {
+      translateWrapper(window, translationModel, sourceText, sourceLanguage, targetLanguage, function(i) {
         $('#translatedOutput').text(i);
       });
     }
@@ -45,6 +48,13 @@ $(document).ready(function(){
     $('#toText').text($(this).text());
     $('#toText').attr('value', $(this).attr('value'));
   });
+
+  $('#translationMenu li  a').on('click', function(){
+    $('#translationModel').text($(this).text());
+    $('#translationModel').attr('value', $(this).attr('value'));
+  });
+  $("#translationMenu li a")[0].click();
+
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {greeting: "detection"}, function(response) {
