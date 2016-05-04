@@ -54,6 +54,10 @@ function detectLanguage(phrase) {
  * @param {function} callback - callback method
  */
 function translateWrapper(window, mt, source_text, source_lang, target_lang, callback){
+  console.log('Source Language Selected:', source_lang);
+  console.log('Target Language Selected:', target_lang);
+  console.log('Text to translate:', source_text);
+  console.log('Using API:', mt);
   var url = '';
   if (mt == 'yandex') {
     // YANDEX

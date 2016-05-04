@@ -4,7 +4,7 @@ chrome.runtime.onMessage.addListener(
                 "from a content script:" + sender.tab.url :
                 "from the extension");
     if (request.greeting == "hello") {
-        translateWebPage(request.source, request.target)
+        translateWebPage(request.source, request.target, request.mt);
         sendResponse({farewell: "goodbye"});
     } else if (request.greeting == "detection") {
         sendDetectionMessage();
@@ -24,7 +24,8 @@ function sendDetectionMessage() {
 }
 
 
-function translateWebPage(sourceLanguage, targetLanguage) {
+function translateWebPage(sourceLanguage, targetLanguage, mt) {
+  console.log('translating webpage...');
     var elements = document.getElementsByTagName('*');
 
     for (var i = 0; i < elements.length; i++) {
@@ -34,7 +35,7 @@ function translateWebPage(sourceLanguage, targetLanguage) {
                 (function() {
                     var node = element.childNodes[j];
                     if(node.nodeType === 3){
-                        $.when(swapText(element,node, sourceLanguage, targetLanguage))
+                        $.when(swapText(element,node, sourceLanguage, targetLanguage, mt))
                     }
                 })(j);
             }
@@ -42,9 +43,9 @@ function translateWebPage(sourceLanguage, targetLanguage) {
 
 }
 
-function swapText(element,node, sourceLanguage, targetLanguage){
+function swapText(element,node, sourceLanguage, targetLanguage, mt){
     var text = node.nodeValue;
-    translateWrapper(window, text, sourceLanguage, targetLanguage, function(i) {
+    translateWrapper(window, mt, text, sourceLanguage, targetLanguage, function(i) {
         console.log(text);
         var re = new RegExp(text,"g");
         var replacedText = text.replace(re, i);
