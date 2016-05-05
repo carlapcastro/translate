@@ -27,6 +27,7 @@ want to use different translation systems.
 
 ## Features
 * Choice between two leading translation systems.
+* Language detection for webpages.
 * Translate input text!
 * Translate full webpages!
 
