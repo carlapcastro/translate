@@ -6,13 +6,12 @@ want to use different translation systems.
 
 ## Preview
 ### Translation Homepage
-[logo]: ./img/preview_home.png "MODEX Home preview"
+![MODEX Home preview](https://github.com/carlapcastro/translate/blob/master/img/preview_home.png?raw=true)
 ### Translation Language Selection
-[logo]: ./img/preview_translation.png "MODEX Translation process preview"
-### Translation Results pages
-[logo]: ./img/preview_results.png "MODEX Translation results display"
+![MODEX Translation process preview](https://github.com/carlapcastro/translate/blob/master/img/preview_translation.png?raw=true)
+![MODEX Translation results display](https://github.com/carlapcastro/translate/blob/master/img/preview_results.png?raw=true)
 ### Webpage Translation
-[logo]: ./img/preview_webpage.png "MODEX Translation webpage display"
+![MODEX Translation webpage display](https://github.com/carlapcastro/translate/blob/master/img/preview_webpage.png?raw=true)
 
 ## Installation
 * Open the [Chrome Extension Menu](chrome://extensions/).
