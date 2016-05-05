@@ -2,6 +2,7 @@ $(document).ready(function(){
 
   $(window).onload = function() {
     console.log("Translation extension loaded.");
+
   }
 
   $('#submitBtn').on("click", function() {
@@ -15,13 +16,17 @@ $(document).ready(function(){
       console.log('No languages selected');
       $('#translatedOutput').text('Please select a language!');
     } else {
-      translateWrapper(window, translationModel, sourceText, sourceLanguage, targetLanguage, function(i) {
-        $('#translatedOutput').text(i);
-      });
+      console.log("opening results.html...");
+      localStorage.setItem("sourceText",sourceText);
+      localStorage.setItem("sourceLanguage",sourceLanguage);
+      localStorage.setItem("targetLanguage",targetLanguage);
+      localStorage.setItem("translationModel",translationModel);
+
+      window.location.href="results.html";
     }
   });
 
-  $("#translatePageBtn").on("click", function() {
+  $("#translatePageBtn a").on("click", function() {
       console.log("translate page button clicked");
       var sourceLanguage = $('#fromText').attr('value');
       var targetLanguage = $('#toText').attr('value');
@@ -32,6 +37,16 @@ $(document).ready(function(){
             console.log(response.farewell);
         });
       });
+  });
+
+  $('textarea').keypress(function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+    }
+  });
+
+  $('textarea').on('keyup', function(){
+    $(this).val($(this).val().replace(/\n/g, ''));
   });
 
   $('#sourceLanguageMenu li  a').on('click', function(){
@@ -50,6 +65,10 @@ $(document).ready(function(){
   });
   $("#translationMenu li a")[0].click();
 
+  $('#footerLinks').on('click', 'a', function(){
+    chrome.tabs.create({url: $(this).attr('href')});
+    return false;
+  });
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {greeting: "detection"}, function(response) {

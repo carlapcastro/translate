@@ -11,7 +11,7 @@
     <title>Getting Started Extension's Popup</title>
   </head>
   <body>
-      <div class = "container big">
+      <div class = "container source">
         <div class="row">
           <div class="header col-xs-4">
             Moses Translator
@@ -71,22 +71,18 @@
             <textarea class="form-control" rows="1" id="inputText"></textarea>
           </div>
           <div class="col-xs-2 nopadding-left">
-            <button type="submit" class="s-button btn btn-sm" id="submitBtn">Submit</button>
+            <button type="submit" class="s-button btn btn-sm" id="submitBtn">TRANSLATE</button>
           </div>
         </div>
       </div>
-      <div class = "container label-container">
-          <span id="translatedOutput">Your translated text will appear here!</span>
-      </div>
-      <div class="container label-container">
-          <div class="text-blue">Or...</div>
-      </div>
       <div class="container label-container" align="center">
-          <button id ="translatePageBtn" class="btn btn-default page-button">Translate Web Page</button>
+          <span id ="translatePageBtn"><a href="#">TRANSLATE THIS PAGE</a></span>
       </div>
-      <div class="footer">
-          <p>&copy; 2016 Samantha Siow, Carla Castro<br>
-            Translation by <a href="https://tech.yandex.com/translate/">Yandex</a> and <a href="http://www.statmt.org/moses/">Moses</a></p>
+      <div class="row">
+        <div class="footer" id="footerLinks">
+            <p>&copy; 2016 Samantha Siow, Carla Castro<br>
+              Translation by <a href="https://tech.yandex.com/translate/">Yandex</a> and <a href="http://www.statmt.org/moses/">Moses</a></p>
+        </div>
       </div>
     </div>
     <script src="./js/translate_server.js"></script>

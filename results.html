@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="./css/popup.css"></link>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/results.js"></script>
+
+    <title>Getting Started Extension's Popup</title>
+  </head>
+  <body>
+    <div class = "container results">
+      <div class="row">
+        <div class="header col-xs-4">
+          Moses Translator
+        </div>
+        <div class="header col-xs-6"></div>
+        <div class="header col-xs-2"><a href="popup.html"><i class="fa fa-undo fa-lg" aria-hidden="true"></i></a></div>
+      </div>
+      <div class = "container text-container result-text">
+        <p><b>Source</b><br><p>
+        <p id="sourceText">Loading...</p>
+      </div>
+      <div class = "container text-container result-text">
+        <p><b>Translation</b><br><p>
+        <p id="translatedOutput">Loading...</p>
+      </div>
+      <div class="footer">
+          <p>&copy; 2016 Samantha Siow, Carla Castro<br>
+            Translation by <a href="https://tech.yandex.com/translate/">Yandex</a> and <a href="http://www.statmt.org/moses/">Moses</a></p>
+      </div>
+      </div>
+    <script src="./js/translate_server.js"></script>
+  </body>
+</html>
