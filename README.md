@@ -26,4 +26,10 @@ want to use different translation systems.
 * Make sure you have a stable internet connection to send requests to the Yandex API.
 
 ## Features
-*
+* Choice between two leading translation systems.
+* Translate input text!
+* Translate full webpages!
+
+## Future Work
+* Add more languages for translation.
+* Incorporate Google Translate API for more translation system options.
