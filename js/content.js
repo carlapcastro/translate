@@ -82,9 +82,29 @@ function createLanguages(translationLanguages) {
     sourceLanguageMenu.appendChild(sourceDropdown);
     var targetDropdown = sourceDropdown.cloneNode(true);
     targetLanguageMenu.appendChild(targetDropdown);
+    console.log(targetDropdown);
   }
 };
 
+/**
+  Get the translation parameters, and store them in the local storage
+  to be used for translation calls. If successful, load the results page. 
+*/
 function setTranslationParameters(window) {
-  
+  // var sourceText = $('');
+  var sourceLanguage = $('#fromText').attr('value');
+  var targetLanguage = $('#toText').attr('value');
+  console.log('source language', sourceLanguage);
+  var sourceText = $('#inputText').val();
+  var translationModel = $('#translationModel').attr('value');
+  if (targetLanguage == undefined || !sourceText || sourceLanguage == '') {
+    console.log('No languages selected');
+  } else {
+    console.log("opening results.html...");
+    localStorage.setItem("sourceText",sourceText);
+    localStorage.setItem("sourceLanguage",sourceLanguage);
+    localStorage.setItem("targetLanguage",targetLanguage);
+    localStorage.setItem("translationModel",translationModel);
+    window.location.href="results.html";
+  }
 }

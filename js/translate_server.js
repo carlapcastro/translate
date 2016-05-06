@@ -37,7 +37,7 @@ function detectLanguage(phrase) {
     $.post(url, function(data, status) {
         console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
         $('#fromText').text(languages[data.lang]);
-        $('#fromText').attr('value', languages[data.lang]);
+        $('#fromText').attr('value', data.lang);
     });
 }
 
@@ -84,9 +84,13 @@ function translateWrapper(window, mt, source_text, source_lang, target_lang, cal
   }
 
   httpGetAsync(window, url, function(i) {
-    translateResponse(mt, i, function(res) {
-      console.log('GET request successful: Translated', res);
-      callback(res);
+    translateResponse(mt, i, function(err,res) {
+      if (err) {
+        alert(err);
+      } else {
+        console.log('GET request successful: Translated', res);
+        callback(res);
+      }
     })
   });
 }
@@ -141,24 +145,24 @@ function translateResponse(mt, response, callback) {
   if (response == undefined) {
     // Handle response when nothing is returned.
     var err = new Error("Error retrieving response.");
-    callback(err);
+    callback(err, null);
   } else {
     var json_response = JSON.parse(response);
     if (json_response.error) {
       var err = new Error('API error', json_response.error.errors[0].message);
-      callback(err);
+      callback(err, null);
     } else {
       if (mt == 'yandex') {
         var translated_text = json_response.text[0];
         console.log('Retrieved translated text from Yandex:', translated_text);
-        callback(translated_text);
+        callback(null,translated_text);
       } else {
         var results = json_response.data;
         var translations = results.translations;
         var translated_text = translations[0].translatedText;
 
         console.log('Retrieved translated text from Moses:', translated_text);
-        callback(translated_text);
+        callback(null, translated_text);
       }
     }
   }

@@ -6,6 +6,7 @@ $(document).ready(function(){
   translateWrapper(window, translationModel, sourceText, sourceLanguage, targetLanguage, function(i) {
     $('#sourceText').text(sourceText);
     $('#translatedOutput').text(i);
+    window.localStorage.clear();
   });
 
   $(window).onload = function() {
