@@ -22,7 +22,13 @@ var translate = {
 var languages = {
     "en" : "English",
     "es" : "Spanish",
-    "fr" : "French"
+    "fr" : "French",
+    "de" : "German",
+    "ru" : "Russian",
+    "pt" : "Portuguese",
+    "cs" : "Czech",
+    "da" : "Danish",
+    "nl" : "Dutch"
 }
 
 function detectLanguage(phrase) {

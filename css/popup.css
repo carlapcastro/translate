@@ -24,6 +24,7 @@ a {
 
 html {
   position: relative;
+  max-height: 600px;
   height: auto;
 }
 body {
@@ -46,7 +47,7 @@ body {
 }
 
 .source {
-    min-height: 200px;
+    max-height: 200px;
     width:600px;
     padding: 0px 0px;
 }
@@ -244,7 +245,15 @@ textarea {
 
 .dropdown-menu {
   min-width: 100%;
+  max-height: 100px;
+  overflow: scroll;
   background: #FAFAFA;
+}
+
+.dropdown-menu li {
+  font-size: 1em;
+  margin: 0 0 .75em 0;
+  height: 1em;
 }
 
 .btn {

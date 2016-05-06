@@ -1,8 +1,9 @@
 $(document).ready(function(){
 
+  createLanguages();
+
   $(window).onload = function() {
     console.log("Translation extension loaded.");
-
   }
 
   $('#submitBtn').on("click", function() {
@@ -86,5 +87,29 @@ $(document).ready(function(){
       sendResponse({farewell: "good-a-bye"});
     }
   });
+
+  createLanguages = function() {
+    var sourceLanguageMenu = document.getElementById("sourceLanguageMenu");
+    var targetLanguageMenu = document.getElementById("targetLanguageMenu");
+    $('#sourceLanguageMenu ul').empty();
+    for (var code in languages) {
+      console.log('creating dropdown for ', code, ' with label ', languages[code]);
+      var sourceDropdown = document.createElement("li");
+      var link = document.createElement("a");
+      var text = document.createTextNode(languages[code]);
+      link.className = "dropdown-item";
+      link.href = "#";
+      var languageCode = document.createAttribute("value");
+      languageCode.value = code;
+      link.setAttributeNode(languageCode);
+
+      link.appendChild(text);
+      sourceDropdown.appendChild(link);
+
+      sourceLanguageMenu.appendChild(sourceDropdown);
+      var targetDropdown = sourceDropdown.cloneNode(true);
+      targetLanguageMenu.appendChild(targetDropdown);
+    }
+  }
 
 });
