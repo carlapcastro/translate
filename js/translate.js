@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  createLanguages();
+  createLanguages(languages);
 
   $(window).onload = function() {
     console.log("Translation extension loaded.");
@@ -13,9 +13,8 @@ $(document).ready(function(){
     var targetLanguage = $('#toText').attr('value');
     var sourceText = $('#inputText').val();
     var translationModel = $('#translationModel').attr('value');
-    if (sourceLanguage == 'Language' || targetLanguage == 'Language') {
+    if (targetLanguage == undefined || !sourceText || sourceLanguage == '') {
       console.log('No languages selected');
-      $('#translatedOutput').text('Please select a language!');
     } else {
       console.log("opening results.html...");
       localStorage.setItem("sourceText",sourceText);

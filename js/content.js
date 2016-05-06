@@ -56,11 +56,16 @@ function swapText(element,node, sourceLanguage, targetLanguage, mt){
     });
 }
 
-function createLanguages() {
+/**
+  Create individual elements for each language. These elements for the
+  drop down list for language selection.
+*/
+
+function createLanguages(translationLanguages) {
   var sourceLanguageMenu = document.getElementById("sourceLanguageMenu");
   var targetLanguageMenu = document.getElementById("targetLanguageMenu");
   $('#sourceLanguageMenu ul').empty();
-  for (var code in languages) {
+  for (var code in translationLanguages) {
     console.log('creating dropdown for ', code, ' with label ', languages[code]);
     var sourceDropdown = document.createElement("li");
     var link = document.createElement("a");
@@ -79,3 +84,7 @@ function createLanguages() {
     targetLanguageMenu.appendChild(targetDropdown);
   }
 };
+
+function setTranslationParameters(window) {
+  
+}
