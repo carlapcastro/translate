@@ -3,6 +3,7 @@
   <head>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/font-awesome.min.css"></link>
     <link rel="stylesheet" href="./css/bootstrap.min.css"></link>
     <link rel="stylesheet" href="./css/popup.css"></link>
     <script src="./js/jquery-2.1.4.min.js"></script>
@@ -71,7 +72,11 @@
         </div>
       </div>
       <div class="container label-container" align="center">
-          <span id ="translatePageBtn"><a href="#">TRANSLATE THIS PAGE</a></span>
+          <div id="lspinner" class="hidden">
+            <i class="fa fa-circle-o-notch fa-spin fa-2x fa-fw margin-bottom"></i>
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span id ="translatePageBtn" class="unhidden"><a href="#">TRANSLATE THIS PAGE</a></span>
       </div>
       <div class="row">
         <div class="footer" id="footerLinks">
@@ -80,5 +85,8 @@
         </div>
       </div>
     </div>
+  </body>
+</html>
+ </div>
   </body>
 </html>

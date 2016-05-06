@@ -41,6 +41,12 @@ function translateWebPage(sourceLanguage, targetLanguage, mt) {
             }
     }
 
+
+    chrome.runtime.sendMessage({greeting: "removeSpinner"}, function(response) {
+      console.log(response.farewell);
+    });
+
+
 }
 
 function swapText(element,node, sourceLanguage, targetLanguage, mt){
@@ -88,7 +94,7 @@ function createLanguages(translationLanguages) {
 
 /**
   Get the translation parameters, and store them in the local storage
-  to be used for translation calls. If successful, load the results page. 
+  to be used for translation calls. If successful, load the results page.
 */
 function setTranslationParameters(window) {
   // var sourceText = $('');

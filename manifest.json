@@ -18,7 +18,7 @@
       "js/jquery-2.1.4.min.js",
       "js/translate_server.js",
       "js/translate.js",
-      "js/results.js"
+      "js/results.js",
       "js/content.js"
     ],
     "run_at": "document_end"
@@ -33,6 +33,7 @@
   "web_accessible_resources" : [
     "css/bootstrap.min.css",
     "js/bootstrap.min.js",
-    "js/jquery-2.1.4.min.js"
+    "js/jquery-2.1.4.min.js",
+    "css/font-awesome.min.css"
   ]
 }

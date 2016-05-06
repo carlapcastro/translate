@@ -18,11 +18,26 @@ $(document).ready(function(){
       var targetLanguage = $('#toText').attr('value');
       var translationModel = $('#translationModel').attr('value');
 
+      document.getElementById("lspinner").className = "unhidden" ;
+      document.getElementById("translatePageBtn").className = "hidden";
+
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello", source: sourceLanguage, target: targetLanguage, mt: translationModel}, function(response) {
             console.log(response.farewell);
         });
       });
+  });
+
+  chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    console.log(sender.tab ?
+                "from a content script:" + sender.tab.url :
+                "from the extension");
+    if (request.greeting == "removeSpinner") {
+        document.getElementById("lspinner").className = "hidden" ;
+        document.getElementById("translatePageBtn").className = "unhidden";
+      sendResponse({farewell: "bye bye spinner"});
+    }
   });
 
   // Disable enter key and newlines for text area
