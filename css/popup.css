@@ -24,8 +24,6 @@ a {
 
 html {
   position: relative;
-  max-height: 600px;
-  height: auto;
 }
 body {
   /* Margin bottom by footer height */
@@ -251,8 +249,8 @@ textarea {
 }
 
 .dropdown-menu li {
-  font-size: 1em;
-  margin: 0 0 .75em 0;
+  font-size: .8em;
+  margin: 0 0 .8em 0;
   height: 1em;
 }
 
